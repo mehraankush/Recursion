@@ -36,3 +36,39 @@ vector<int> subsetSum(vector<int> &num){
 	return res;
 		
 }
+
+
+
+//Second solution
+
+
+
+int FindSum(vector<int>&arr){
+     int temp = 0;
+	for(int i=0;i<arr.size();i++){
+       temp+=arr[i];
+	}
+
+	return temp;
+}
+
+void findSubsetSum(vector<int> &arr,vector<int>&res,int ind,int sum){
+	if(ind==arr.size()){
+		res.push_back(sum);
+		return;
+	}
+
+	findSubsetSum(arr,res,ind+1,sum+arr[ind]);
+
+	findSubsetSum(arr,res,ind+1,sum);
+}
+
+
+vector<int> subsetSum(vector<int> &num){
+	// Write your code here.
+	vector<int>res;
+	findSubsetSum(num,res,0,0);
+	sort(res.begin(),res.end());
+	return res;
+		
+}
